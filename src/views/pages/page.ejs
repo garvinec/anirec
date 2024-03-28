@@ -1,0 +1,56 @@
+<%- include('../layout/header') %>
+<link href="./../styles/output.css" rel="stylesheet" />
+  <body class="bg-zinc-900 h-screen">
+    <!-- Page banner -->
+    <div class="bg-gradient-to-r from-red-300 to-red-50 h-2/3 flex flex-col justify-center items-center">
+      <div class="text-zinc-900 text-9xl font-bold pb-5"><%= bannerTitle %></div>
+    </div>
+    <div id="main" class="flex flex-col pl-40 pr-20 pt-20">
+      <div class="text-red-200 text-7xl font-bold pb-10"><%= header %></div>
+      <div class="flex flex-row">
+        <div class='flex flex-row text-red-200 text-3xl w-1/12 pb-10'>
+          Rank
+        </div>
+        <div class='flex flex-row text-red-200 text-3xl w-8/12 pb-10'>
+          Title
+        </div>
+        <div class='flex flex-row text-red-200 text-3xl w-3/12 pb-10'>
+          Score
+        </div>
+      </div>
+      <% for (let i = (currentPage - 1) * pageMax; i < Math.min(currentPage * pageMax, content.length); i++) { %>
+        <div class="flex flex-row">
+          <div class='flex flex-row text-red-200 text-6xl w-1/12 pb-10'>
+            <%= i + 1 %>
+          </div>
+          <div class='flex flex-row text-red-200 text-6xl w-8/12 pb-10'>
+            <%= content[i].title %>
+          </div>
+          <div class='flex flex-row text-red-200 text-6xl w-3/12 pb-10'>
+            <%= content[i].score %>
+          </div>
+        </div>
+      <% } %>
+    </div>
+    <!-- pagination component -->
+    <div class="w-screen flex flex-row justify-center">
+        <div class="flex flex-row justify-evenly pb-32 pt-10 w-1/4">
+            <% for (let i = 0; i < pages; i++) { %>
+                <% if (genre) { %>
+                    <% if (i + 1 == currentPage) { %>
+                        <a href="/<%= genre %>/<%= i + 1 %>#main" class="flex flex-row justify-center outline outline-2 outline-red-200 text-neutral-50 py-3 px-4 rounded-full font-bold"><%= i + 1 %></a>
+                    <% } else {%>
+                        <a href="/<%= genre %>/<%= i + 1 %>#main" class="flex flex-row justify-center bg-red-200 text-neutral-50 py-3 px-4 rounded-full font-bold"><%= i + 1 %></a>
+                    <% } %>
+                <% } else {%>
+                    <% if (i + 1 == currentPage) { %>
+                        <a href="/popular/<%= i + 1 %>#main" class="flex flex-row justify-center outline outline-2 outline-red-200 text-neutral-50 py-3 px-4 rounded-full font-bold"><%= i + 1 %></a>
+                    <% } else {%>
+                        <a href="/popular/<%= i + 1 %>#main" class="flex flex-row justify-center bg-red-200 text-neutral-50 py-3 px-4 rounded-full font-bold"><%= i + 1 %></a>
+                    <% } %>
+                <% } %>
+            <% } %>
+          </div>
+    </div>
+  </body>
+</html>

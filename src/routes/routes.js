@@ -1,77 +1,187 @@
 const express = require("express");
+const ejs = require("ejs");
 const router = express.Router();
 const topAnimeData = require("../utils/animeData");
 
 router.get("/", (req, res) => {
-  return res.render("pages/home", {
-    title: "Homepage Title",
-    content: "Some random content",
-  });
-});
-
-router.get("/action", (req, res) => {
-  return res.render("pages/action", {
-    title: "Action Page Title",
-    content: "Some random content",
-  });
-});
-
-router.get("/adventure", (req, res) => {
-  return res.render("pages/adventure", {
-    title: "Adventure Page Title",
-    content: "Some random content",
-  });
-});
-
-router.get("/comedy", (req, res) => {
-  return res.render("pages/comedy", {
-    title: "Comedy Page Title",
-    content: "Some random content",
-  });
-});
-
-router.get("/romance", (req, res) => {
-  // res.render("pages/romance", {
-  //   title: "Romance Page Title",
-  //   content: "Some random content",
-  // });
-  topAnimeData(
-    "Romance",
-    (response) => {
-      res.send(response);
-    },
-    (error) => {
-      res.send(error);
-    }
-  );
-});
-
-router.get("/sci-fi", (req, res) => {
-  // res.render("pages/scifi", {
-  //   title: "Sci-fi Page Title",
-  //   content: "Some random content",
-  // });
-  topAnimeData(
-    "Sci-Fi",
-    (response) => {
-      res.send(response);
-    },
-    (error) => {
-      res.send(error);
-    }
-  );
-});
-
-router.get("/anime", (req, res) => {
   topAnimeData(
     "",
     (response) => {
-      res.send(response);
+      return res.render("pages/home", {
+        title: "Most Popular Animes",
+        content: response,
+      });
     },
     (error) => {
       res.send(error);
     }
   );
+});
+
+// router.get("/", (req, res) => {
+//   ejs.renderFile(
+//     "src/views/pages/home.ejs",
+//     {
+//       title: "Most Popular Animes",
+//       content: response,
+//     },
+//     topAnimeData(
+//       "",
+//       (response) => {
+//         return res.render("pages/home", {
+//           title: "Most Popular Animes",
+//           content: response,
+//         });
+//       },
+//       (error) => {
+//         res.send(error);
+//       }
+//     )
+//   );
+// });
+
+// src/views/pages/home.ejs
+
+router.get("/popular/:page", (req, res) => {
+  var pageMax = 10;
+  var currentPage = req.params.page || 1;
+
+  topAnimeData(
+    "",
+    (response) => {
+      return res.render("pages/page", {
+        bannerTitle: "Popular Animes",
+        header: "Most Popular Animes",
+        genre: "",
+        content: response,
+        currentPage: currentPage,
+        pageMax: pageMax,
+        pages: Math.ceil(response.length / pageMax),
+      });
+    },
+    (error) => {
+      res.send(error);
+    }
+  );
+});
+
+router.get("/action/:page", (req, res) => {
+  var pageMax = 5;
+  var currentPage = req.params.page || 1;
+
+  topAnimeData(
+    "Action",
+    (response) => {
+      return res.render("pages/page", {
+        bannerTitle: "Action Animes",
+        header: "Most Popular Action Animes",
+        genre: "action",
+        content: response,
+        currentPage: currentPage,
+        pageMax: pageMax,
+        pages: Math.ceil(response.length / pageMax),
+      });
+    },
+    (error) => {
+      res.send(error);
+    }
+  );
+});
+
+router.get("/adventure/:page", (req, res) => {
+  var pageMax = 5;
+  var currentPage = req.params.page || 1;
+
+  topAnimeData(
+    "Adventure",
+    (response) => {
+      return res.render("pages/page", {
+        bannerTitle: "Adventure Animes",
+        header: "Most Popular Adventure Animes",
+        genre: "adventure",
+        content: response,
+        currentPage: currentPage,
+        pageMax: pageMax,
+        pages: Math.ceil(response.length / pageMax),
+      });
+    },
+    (error) => {
+      res.send(error);
+    }
+  );
+});
+
+router.get("/comedy/:page", (req, res) => {
+  var pageMax = 5;
+  var currentPage = req.params.page || 1;
+
+  topAnimeData(
+    "Comedy",
+    (response) => {
+      return res.render("pages/page", {
+        bannerTitle: "Comedy Animes",
+        header: "Most Popular Comedy Animes",
+        genre: "comedy",
+        content: response,
+        currentPage: currentPage,
+        pageMax: pageMax,
+        pages: Math.ceil(response.length / pageMax),
+      });
+    },
+    (error) => {
+      res.send(error);
+    }
+  );
+});
+
+router.get("/romance/:page", (req, res) => {
+  var pageMax = 5;
+  var currentPage = req.params.page || 1;
+
+  topAnimeData(
+    "Romance",
+    (response) => {
+      return res.render("pages/page", {
+        bannerTitle: "Romance Animes",
+        header: "Most Popular Romance Animes",
+        genre: "romance",
+        content: response,
+        currentPage: currentPage,
+        pageMax: pageMax,
+        pages: Math.ceil(response.length / pageMax),
+      });
+    },
+    (error) => {
+      res.send(error);
+    }
+  );
+});
+
+router.get("/sci-fi/:page", (req, res) => {
+  var pageMax = 5;
+  var currentPage = req.params.page || 1;
+
+  topAnimeData(
+    "Sci-Fi",
+    (response) => {
+      return res.render("pages/page", {
+        bannerTitle: "Sci-Fi Animes",
+        header: "Most Popular Sci-Fi Animes",
+        genre: "sci-fi",
+        content: response,
+        currentPage: currentPage,
+        pageMax: pageMax,
+        pages: Math.ceil(response.length / pageMax),
+      });
+    },
+    (error) => {
+      res.send(error);
+    }
+  );
+});
+
+router.get("*", function (req, res) {
+  res.status(404).send("Hey lost traveler, what are you doing here???");
 });
 
 module.exports = router;
