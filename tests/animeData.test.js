@@ -492,13 +492,6 @@ const mockSciFiResult = [
   },
 ];
 
-const mockError = {
-  response: {
-    status: 429,
-    statusText: "Too Many Requests",
-  },
-};
-
 test("Sorting popular anime data logic", () => {
   expect(sortDataByGenre("", mockData)).toStrictEqual(mockPopularResult);
 });

@@ -1,6 +1,6 @@
 # Supplyframe Full Stack Engineering Internship Challenge 2024
 
-This web application displays the ranking of anime based on their MAL (MyAnimeList) score, utilizing the _[Jikan API](https://jikan.moe/)_.
+This web application displays the ranking of anime based on their MAL (MyAnimeList) score, utilizing the _[Jikan API](https://jikan.moe/)_. On the application, users can find the overall ranking and the genre-specific ranking of popular animes.
 
 ## Technologies Used
 
@@ -31,8 +31,22 @@ cd anirec
 npm install
 ```
 
-5. Run the server locally
+4. Run the server locally
 
 ```
 npm run start
 ```
+
+## Features
+
+### Jest Testing
+
+Jest testing framework was used to ensure that the data fetched from the API is correctly sorted by genres.
+
+### Client-Side Data Caching
+
+Node-cache, a NodeJS internal caching module, was used for client-side caching of data. This was implemented to prevent exceeding the rate limit of the Jikan API and improve the loading speed of each page.
+
+### Mobile-Optimized Design
+
+Tailwind CSS was used to ensure that the web application is optimized for various devices, including mobile and tablet devices.

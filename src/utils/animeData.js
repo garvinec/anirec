@@ -35,13 +35,9 @@ const topAnimeData = async (genre, successCallback, failureCallback) => {
         });
 
       if (hasError) {
-        if (error.response.status !== 429) {
-          // If it's not too many requests error, failureCallback
-          failureCallback(
-            `Error ${error.response.status}: ` + error.response.statusText
-          );
-          return;
-        }
+        failureCallback(
+          `Error ${error.response.status}: ` + error.response.statusText
+        );
         break;
       }
 
@@ -52,6 +48,7 @@ const topAnimeData = async (genre, successCallback, failureCallback) => {
         break;
       }
     }
+
     success = myCache.set("animeData", animeList, 10000);
     if (success) {
       console.log("Data has successfully been cached!");
