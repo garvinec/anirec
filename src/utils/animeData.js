@@ -9,7 +9,8 @@ const topAnimeData = async (genre, successCallback, failureCallback) => {
   // data has not been cached yet
   if (value == undefined) {
     var page = 1;
-    while (animeList.length <= 50) {
+    // requests limit from Jikan API (can't fetch more than 3 pages at once)
+    while (animeList.length <= 74) {
       let pagination = null;
       let data = null;
       let hasError = false;
@@ -91,4 +92,4 @@ const sortDataByGenre = (genre, data) => {
   return filteredList;
 };
 
-module.exports = topAnimeData;
+module.exports = { topAnimeData, sortDataByGenre };

@@ -7,16 +7,84 @@
     <title>Page Title</title>
   </head>
   <body>
-    <div
-      class="flex flex-row justify-between align-center p-20 text-white bg-zinc-900"
-    >
-      <a href="/" class="font-black text-5xl">AniRec</a>
-      <a href="/popular/1" class="font-bold text-2xl pt-2">Popular</a>
-      <a href="/action/1" class="font-bold text-2xl pt-2">Action</a>
-      <a href="/adventure/1" class="font-bold text-2xl pt-2">Adventure</a>
-      <a href="/comedy/1" class="font-bold text-2xl pt-2">Comedy</a>
-      <a href="/romance/1" class="font-bold text-2xl pt-2">Romance</a>
-      <a href="/sci-fi/1" class="font-bold text-2xl pt-2">Sci-fi</a>
+    <script>
+      function openBar() {
+        document.getElementById("closed-bar").style.display = "none";
+        document.getElementById("opened-bar").style.display = "flex";
+      }
+
+      function closeBar() {
+        document.getElementById("closed-bar").style.display = "flex";
+        document.getElementById("opened-bar").style.display = "none";
+      }
+    </script>
+    <div class="p-20 text-white bg-zinc-900">
+      <div
+        id="'desktop-navbar"
+        class="max-[900px]:hidden min-[901px]:flex flex-row justify-between align-center"
+      >
+        <a href="/" class="font-black text-5xl">AniRec</a>
+        <a href="/popular/1" class="font-bold text-2xl pt-2">Popular</a>
+        <a href="/action/1" class="font-bold text-2xl pt-2">Action</a>
+        <a href="/adventure/1" class="font-bold text-2xl pt-2">Adventure</a>
+        <a href="/comedy/1" class="font-bold text-2xl pt-2">Comedy</a>
+        <a href="/romance/1" class="font-bold text-2xl pt-2">Romance</a>
+        <a href="/sci-fi/1" class="font-bold text-2xl pt-2">Sci-fi</a>
+      </div>
+      <div
+        id="mobile-navbar"
+        class="min-[901px]:hidden max-[900px]:flex flex-row justify-between items-center"
+      >
+        <a href="/" class="font-black text-5xl">AniRec</a>
+        <div id="opened-bar" class="hidden">
+          <img
+            src="/three_bars_white.png"
+            alt="bars"
+            class="size-12"
+            onclick="closeBar()"
+          />
+          <div
+            class="flex flex-col justify-evenly absolute right-0 mt-10 p-5 bg-zinc-900 rounded-lg shadow-xl"
+          >
+            <a
+              href="/popular/1"
+              class="font-bold text-2xl pt-3 pb-3 hover:underline"
+              >Popular</a
+            >
+            <a
+              href="/action/1"
+              class="font-bold text-2xl pt-3 pb-3 hover:underline"
+              >Action</a
+            >
+            <a
+              href="/adventure/1"
+              class="font-bold text-2xl pt-3 pb-3 hover:underline"
+              >Adventure</a
+            >
+            <a
+              href="/comedy/1"
+              class="font-bold text-2xl pt-3 pb-3 hover:underline"
+              >Comedy</a
+            >
+            <a
+              href="/romance/1"
+              class="font-bold text-2xl pt-3 pb-3 hover:underline"
+              >Romance</a
+            >
+            <a href="/sci-fi/1" class="font-bold text-2xl pt-3 hover:underline"
+              >Sci-fi</a
+            >
+          </div>
+        </div>
+        <div id="closed-bar">
+          <img
+            src="/three_bars_white.png"
+            alt="bars"
+            class="size-12"
+            onclick="openBar()"
+          />
+        </div>
+      </div>
     </div>
   </body>
 </html>

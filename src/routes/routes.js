@@ -1,7 +1,7 @@
 const express = require("express");
 const ejs = require("ejs");
 const router = express.Router();
-const topAnimeData = require("../utils/animeData");
+const { topAnimeData } = require("../utils/animeData");
 
 router.get("/", (req, res) => {
   topAnimeData(
@@ -17,30 +17,6 @@ router.get("/", (req, res) => {
     }
   );
 });
-
-// router.get("/", (req, res) => {
-//   ejs.renderFile(
-//     "src/views/pages/home.ejs",
-//     {
-//       title: "Most Popular Animes",
-//       content: response,
-//     },
-//     topAnimeData(
-//       "",
-//       (response) => {
-//         return res.render("pages/home", {
-//           title: "Most Popular Animes",
-//           content: response,
-//         });
-//       },
-//       (error) => {
-//         res.send(error);
-//       }
-//     )
-//   );
-// });
-
-// src/views/pages/home.ejs
 
 router.get("/popular/:page", (req, res) => {
   var pageMax = 10;
