@@ -1,4 +1,4 @@
-# Supplyframe Full Stack Engineering Internship Challenge 2024
+# Anirec
 
 This web application displays the ranking of anime based on their MAL (MyAnimeList) score, utilizing the _[Jikan API](https://jikan.moe/)_. On the application, users can find the overall ranking and the genre-specific ranking of popular animes.
 
